@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Groupe extends Model
 {
     //
+    protected $table = 'groupes';
+
 }

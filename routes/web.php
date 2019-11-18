@@ -28,3 +28,5 @@ Route::get('/prof',function(){
 Route::get('/etud',function(){
     return view('InterfaceEtud');
 });
+Route::get('/groupe','EnseignantController@getGroupes');
+

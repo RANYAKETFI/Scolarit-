@@ -26,5 +26,5 @@ Route::get('/prof',function(){
     return view('InterfaceProf');
 });
 Route::get('/etud',function(){
-    return view('InterfaceEtud');
+    return view('InterfaceEtudiant');
 });

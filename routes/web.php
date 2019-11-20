@@ -25,6 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/prof',function(){
     return view('InterfaceProf');
 });
-Route::get('/etud',function(){
-    return view('InterfaceEtudiant');
-});
+Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');

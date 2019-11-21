@@ -11,20 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/connexion', 'ConnexionController@formulaire');
+
+
+Route::post('/connexion', 'ConnexionController@traitement');
+
+Route::get('/deconnexion', 'ConnexionController@deconnexion');
+
+Route::get('/',function(){
+    return view('Accueil');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/prof',function(){
-    return view('InterfaceProf');
+   return view('InterfaceProf');
+  
 });
+
+
+
+
+
 Route::get('/etud',function(){
     return view('InterfaceEtud');
 });

@@ -37,5 +37,6 @@ Route::get('/ens/{id_enseignant}','EnseignantController@getGroupes');
 Route::get('ens/{id_enseignant}',function ($id_enseignant) {
     $ens= new EnseignantController($id_enseignant);
     return $ens->getGroupes();
-});
+});*/
 
+Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');

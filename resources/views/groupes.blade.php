@@ -9,7 +9,7 @@
 
                 @foreach($groupes as $g) 
                 <div class="card-body">
-                {{$g->id}} : {{$g->groupe}}
+                {{$g->groupe}}
                 </div>
                 @endforeach
             </div>

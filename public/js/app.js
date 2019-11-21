@@ -68918,6 +68918,32 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+/*
+export default class Index extends Component {
+    render() {
+        return (
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                        <div className="card">
+                            <div className="card-header">Example Componentss</div>
+                            <button onClick={this.click}> test </button>
+                            <div className="card-body">I'm an example component!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    click(){alert("ghh");}
+
+}
+
+//function btnClick(){ alert('yeah');}
+
+if (document.getElementById('example')) {
+    ReactDOM.render(<Index />, document.getElementById('example'));
+}*/
 
 var Index =
 /*#__PURE__*/
@@ -68933,6 +68959,7 @@ function (_Component) {
   _createClass(Index, [{
     key: "render",
     value: function render() {
+      var items = [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -68943,16 +68970,14 @@ function (_Component) {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
-      }, "Example Componentss"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "stp ", groupes.groupe), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.click
-      }, " test "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, "I'm an example component!")))));
+      }, " test ")))));
     }
   }, {
     key: "click",
     value: function click() {
-      window.location.replace("login");
+      alert("yup");
     }
   }]);
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+/*
 export default class Index extends Component {
     render() {
         return (
@@ -17,7 +17,33 @@ export default class Index extends Component {
             </div>
         );
     }
-    click(){ window.location.replace("login");}
+    click(){alert("ghh");}
+
+}
+
+//function btnClick(){ alert('yeah');}
+
+if (document.getElementById('example')) {
+    ReactDOM.render(<Index />, document.getElementById('example'));
+}*/
+
+export default class Index extends Component {
+    render() {
+        const items = []
+
+          return (<div className="container">
+          <div className="row justify-content-center">
+              <div className="col-md-8">
+                  <div className="card">
+                      <div className="card-header">stp {groupes.groupe}</div>
+                      <button onClick={this.click}> test </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+          );
+    }
+    click(){alert("yup");}
 
 }
 

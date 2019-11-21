@@ -28,5 +28,14 @@ Route::get('/prof',function(){
 Route::get('/etud',function(){
     return view('InterfaceEtud');
 });
-Route::get('/groupe','EnseignantController@getGroupes');
+//Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
+
+
+Route::get('/ens/{id_enseignant}','EnseignantController@getGroupes');
+
+/*
+Route::get('ens/{id_enseignant}',function ($id_enseignant) {
+    $ens= new EnseignantController($id_enseignant);
+    return $ens->getGroupes();
+});
 

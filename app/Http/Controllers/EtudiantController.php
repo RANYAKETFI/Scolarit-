@@ -25,7 +25,7 @@ class EtudiantController extends Controller
                 
            }
 
-           $id_etud=$etudiant = DB::table('etudiants')->where('login', $_SESSION['login'])->select('id')->get()->first()->id;
+           $id_etud= DB::table('etudiants')->where('login', $_SESSION['login'])->select('id')->get()->first()->id;
         $abs=  \DB::table('absences')
         ->join('seances','absences.id_seance','=','seances.id')
                 ->select('absences.id','seances.module','seances.date','absences.justifie')

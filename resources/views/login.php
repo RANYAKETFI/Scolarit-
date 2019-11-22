@@ -60,7 +60,7 @@ if (!empty($_SESSION['login']))
 						Scolarité - Gestion des absences
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "Saisir l'adresse e-mail: exemple@esi.dz">
 						<input class="input100" type="text" name="email" placeholder="Adresse e-mail">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -68,7 +68,7 @@ if (!empty($_SESSION['login']))
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+					<div class="wrap-input100 validate-input" data-validate = "Saisir le mot de passe">
 						<input class="input100" type="password" name="password" placeholder="Mot de passe">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">

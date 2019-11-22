@@ -140,7 +140,22 @@ $("#menu-toggle").click(function(e){
        ESI-Scolarité
      </div>
      <ul class="sidebar-navigation">
-     <li class="header"><?php echo $_SESSION['login']; echo '<br>'; if ($_SESSION['type']==1) echo "<strong>(enseignant)</strong>" ; else echo "<strong>(étudiant)</strong>";  ?></li>
+     
+     <?php
+      if (($_SESSION['type'])==1) $table='enseignants' ; else $table='etudiants';
+      $nom= DB::table($table)->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
+      $prenom= DB::table($table)->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
+          ?>
+
+     <li class="header"><?php echo '<strong><center>'.$nom.' '.$prenom."</center></strong><center>".$_SESSION['login']; echo '</center>'; if ($_SESSION['type']==1) echo "<center><strong>(enseignant)</strong></center>" ; else
+     {
+      $id_groupe= DB::table('etudiants')->where('login', $_SESSION['login'])->select('id_groupe')->get()->first()->id_groupe;
+      
+        
+      if (!empty($id_groupe)) $groupe= DB::table('groupes')->where('id', $id_groupe)->select('groupe')->get()->first()->groupe;
+     echo "<center><strong>(étudiant - Groupe : ".$groupe.")</strong></center>";
+     }
+     ?></li>
        <li class="header">Fonctionnalités</li>
       
        <?php if ($_SESSION['type']==2)
@@ -166,7 +181,7 @@ $("#menu-toggle").click(function(e){
        }
        ?>
        <li>
-         <a href="#">
+         <a href="/compte">
            <i class="fa fa-tachometer" aria-hidden="true"></i> Gérer mon compte
          </a>
        </li>

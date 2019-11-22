@@ -37,3 +37,6 @@ Route::get('/etud',function(){
 //Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
 
 Route::get('/etud','EtudiantController@absences_etudiant');
+
+Route::get('/compte', 'CompteController@afficher');
+Route::post('/compte', 'CompteController@modifier');

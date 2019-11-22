@@ -18,9 +18,8 @@ Route::post('/connexion', 'ConnexionController@traitement');
 
 Route::get('/deconnexion', 'ConnexionController@deconnexion');
 
-Route::get('/',function(){
-    return view('Accueil');
-});
+
+Route::get('/', 'ConnexionController@redirection');
 
 Route::get('/prof',function(){
    return view('InterfaceProf');
@@ -28,9 +27,13 @@ Route::get('/prof',function(){
 });
 
 
-
-
-
+/*
 Route::get('/etud',function(){
     return view('InterfaceEtud');
 });
+*/
+
+
+//Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
+
+Route::get('/etud','EtudiantController@absences_etudiant');

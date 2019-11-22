@@ -102,6 +102,7 @@ class ConnexionController extends Controller
    
         $_SESSION['login']=NULL;
         $_SESSION['type']=NULL;
+        return redirect('connexion');
  
 
     }
@@ -113,6 +114,14 @@ class ConnexionController extends Controller
             return redirect()->intended('dashboard');
         }
     }
+
+
+    
     */
 
+
+    public function redirection()
+    {
+        return redirect('connexion');
+    }
 }

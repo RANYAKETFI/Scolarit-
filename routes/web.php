@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,15 +28,22 @@ Route::get('/prof',function(){
 Route::get('/etud',function(){
     return view('InterfaceEtud');
 });
+
 //Route::get('search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
-
-Route::get('/ens/{id_enseignant}','EnseignantController@getGroupes');
+*//*
+Route::get('/ens/{id_enseignant}',function(){
+    return view('app');
+});
 
 /*
 Route::get('ens/{id_enseignant}',function ($id_enseignant) {
     $ens= new EnseignantController($id_enseignant);
     return $ens->getGroupes();
 });*/
-
+/*
 Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
+*/
+Route::view('/ens/s/{seance?}', 'app');
+Route::view('/ens/{path?}', 'app');
+Route::view('/ens/{path?}/{gr?}', 'app');

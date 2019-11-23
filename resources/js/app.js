@@ -11,6 +11,12 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//import ReactDataTableApp from './ReactDataTableApp';
 
-require('./components/Example');
-require('./components/Index');
+require('./components/App')
+
+
+/*
+if (document.getElementById('datatable')) {
+    ReactDOM.render(<ReactDataTableApp />, document.getElementById('datatable'));
+}*/

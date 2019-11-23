@@ -4,46 +4,55 @@ import { Link } from 'react-router-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 
-export default class Index extends Component {
+export default class Seance extends Component {
     constructor () {
         super()
         this.state = {
-          groupes: []
+          seances: []
         }
       }
 
       
       componentDidMount () {
-        const { handle } = this.props.match.params
-        axios.get(`/api/ens/${handle}`).then(response => {
+        const  handle  = this.props.match.params.handle
+        const  other  = this.props.match.params.other
+
+        axios.get(`/api/ens/${handle}/${other}`).then(response => {
+          console.log(handle)
+          console.log(other)
+          console.log(JSON.stringify(response))
+
             this.setState({
-            groupes: response.data.data,
-            ens:handle
+            seances: response.data.data
           })
         })
+      }
+      handleclick()
+      {
+        window.history.back()
       }
 
     render() {
         //const columns = ['id', 'groupe'];
         //alert(this.state.groupes)
-        const groupes  = this.state.groupes
-        console.log(groupes)
+        const seances  = this.state.seances
+        console.log(seances)
 
         return (
 <div className='container py-4'>
             <div className='row justify-content-center'>
               <div className='col-md-8'>
                 <div className='card'>
-                  <div className='card-header'>Mes groupes</div>
+                  <div className='card-header'>Mes Séances</div>
                   <div className='card-body'>
                     <ul className='list-group list-group-flush'>
-                      {groupes.map(groupe => (
+                      {seances.map(seance => (
                         <Link
                           className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                          to={`/ens/${this.state.ens}/${groupe.id}`}
-                          key={groupe.id}
+                          to={`/ens/s/${seance.id}`}
+                          key={seance.id}
                         >
-                          {groupe.groupe}
+                          {seance.module} : {seance.date} 
                         </Link>
                       ))}
                     </ul>
@@ -51,13 +60,12 @@ export default class Index extends Component {
                 </div>
               </div>
             </div>
+            <button onClick={this.handleclick} className="button" style={{float:"right"}}>Retour</button>
           </div>        );
       }
     }
 
 
-    
-   
 //function btnClick(){ alert('yeah');}
 /*
 if (document.getElementById('example')) {

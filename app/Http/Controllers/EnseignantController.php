@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use App\Http\Resources\GroupeResource;
+use App\Http\Resources\SeanceResource;
+
+use Javascript;
 
 class EnseignantController extends Controller
 {
@@ -24,16 +29,19 @@ class EnseignantController extends Controller
         ->where('seances.id_enseignant',$id_enseignant)
         ->groupBy('groupes.id')
         ->get();
-        /*JavaScript::put([
-            'groupes' => $groupes,
-        ]);*/
-        return view('ens_groupes', ['groupes' => $groupes]);
+
+        return GroupeResource::collection($groupes);
+        
     }
 
-    public function getSeancesGroupe($group)
-    {
+    public function getSeancesGroupe(Request $request)
+    {   
+        $id_enseignant= $request->id_enseignant;
+        $id_groupe=$request->id_groupe;
         $seances=  \DB::table('seances')
-        ->where('groupes.groupe',$group)->get();
-        return view('groupes', ['groupes' => $seances]);
+        ->where('seances.id_groupe',$id_groupe)
+        ->where('seances.id_enseignant',$id_enseignant)->get();
+        return SeanceResource::collection($seances);
+
     }
 }

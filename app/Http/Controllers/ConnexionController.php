@@ -15,8 +15,6 @@ class ConnexionController extends Controller
         } 
         $_SESSION['a']='test';
         return view('login');
-        
-      
     }
 
     public function traitement()
@@ -78,11 +76,11 @@ class ConnexionController extends Controller
                 }
                 else
                 {
-                    $erreur="Ni un enseignant ni cet étudiant possède cette adresse e-mail";
+                    $erreur="Pas d'enseignant ni d'étudiant ne possèdent cette adresse e-mail";
                 }
             }
             
-        
+        //return $erreur;
 
         }
        

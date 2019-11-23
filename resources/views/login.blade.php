@@ -45,54 +45,14 @@ if (!empty($_SESSION['login']))
 	<link rel="stylesheet" type="text/css" href="login/css/main.css">
 <!--===============================================================================================-->
 </head>
+
 <body>
 
 	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="login/images/img-01.png" alt="IMG">
-				</div>
+	<div id="app"></div>
+	<?php echo $erreur ?>
 
-				<form method="POST" class="login100-form validate-form" action="/connexion">
-					<span class="login100-form-title">
-						Scolarité - Gestion des absences
-					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Saisir l'adresse e-mail: exemple@esi.dz">
-						<input class="input100" type="text" name="email" placeholder="Adresse e-mail">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Saisir le mot de passe">
-						<input class="input100" type="password" name="password" placeholder="Mot de passe">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Connexion
-						</button>
-						<?php echo $erreur; ?>
-					</div>
-
-				
-					<br>
-				<br>
-				<br><br>
-				<br>
-				<br>
-				</form>
-			</div>
-		</div>
-	</div>
 	
 	
 
@@ -113,6 +73,8 @@ if (!empty($_SESSION['login']))
 	</script>
 <!--===============================================================================================-->
 	<script src="login/js/main.js"></script>
+	<script src="{{asset('js/app.js')}}" ></script>
+
 
 </body>
 </html>

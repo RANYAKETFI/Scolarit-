@@ -8,6 +8,7 @@ import Seance from './Seance'
 import GroupeEns from './GroupeEns'
 import Compte from './Compte'
 import Etudiant from './Etudiant'
+import Login from './Login'
 
 
 
@@ -22,6 +23,8 @@ class App extends Component {
           <Route path='/prof' component={Index} />
           <Route path='/compte' component={Compte} />
           <Route path='/etud' component={Etudiant} />
+          <Route path='/connexion' component={Login} />
+
 
           </Switch>
         </div>

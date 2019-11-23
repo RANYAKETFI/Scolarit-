@@ -58,7 +58,8 @@ Route::view('/prof/{path?}', 'InterfaceProf');
 
 //Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
 
-Route::get('/etud','EtudiantController@absences_etudiant');
+//Route::get('/etud','EtudiantController@absences_etudiant');
+Route::view('/etud','InterfaceEtud');
 
 Route::get('/compte', 'CompteController@afficher');
 Route::post('/compte', 'CompteController@modifier');

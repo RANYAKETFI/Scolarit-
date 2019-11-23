@@ -181,6 +181,10 @@
   opacity: 1;
   right: 0;
 }
+
+#table{
+  background-color:#FBEFF2;
+}
     </style>
 </head>
 <body>

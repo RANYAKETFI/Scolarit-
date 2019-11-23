@@ -26,6 +26,8 @@ Route::get('/prof','EnseignantController@getGroupes');
 Route::get('/prof/{id_groupe}','EnseignantController@getSeancesGroupe');
 
 Route::get('/compte','CompteController@getInfo');
+Route::get('/etud','EtudiantController@absences_etudiant');
+
 
 
 

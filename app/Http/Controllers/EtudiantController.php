@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Http\Resources\AbsenceResource;
+
 
 class EtudiantController extends Controller
 {
@@ -33,7 +35,7 @@ class EtudiantController extends Controller
                 ->groupBy('absences.id')
                 ->get();
               
-            return view('InterfaceEtud', ['abs' => $abs]);
+            return AbsenceResource::collection($abs);
       
       
       

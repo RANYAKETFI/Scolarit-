@@ -7,6 +7,7 @@ import Index from './Index'
 import Seance from './Seance'
 import GroupeEns from './GroupeEns'
 import Compte from './Compte'
+import Etudiant from './Etudiant'
 
 
 
@@ -20,6 +21,8 @@ class App extends Component {
           <Route path='/prof/:handle' component={Seance} />
           <Route path='/prof' component={Index} />
           <Route path='/compte' component={Compte} />
+          <Route path='/etud' component={Etudiant} />
+
           </Switch>
         </div>
       </BrowserRouter>

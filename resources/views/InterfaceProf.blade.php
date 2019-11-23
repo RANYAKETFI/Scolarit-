@@ -31,10 +31,7 @@
  ?>
 
 
-
-<div class="container" >
-        <h1><center> Gestion des absences</center></h1>
-        <br>
+<div id="app">
 
       </div>
 

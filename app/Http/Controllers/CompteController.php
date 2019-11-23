@@ -73,4 +73,40 @@ class CompteController extends Controller
       
         
     }
+
+    public function getInfo()
+    {
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        }   
+        if (!isset($_SESSION['login'])) // Login de l'utilisateur connecté (son adresse e-mail). Puur récupérer son id il faudra une requête.
+        {
+        
+        header('Location: /connexion');
+        exit;
+        }
+        if (!isset ($erreur))
+        {
+            $erreur=NULL;
+        }
+        if ($_SESSION['type']==2)
+        {
+            $nom= DB::table('etudiants')->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
+            $prenom= DB::table('etudiants')->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
+        }
+        else
+        {
+            $nom= DB::table('enseignants')->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
+            $prenom= DB::table('enseignants')->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
+        }
+
+        return [
+            "nom" => $nom,
+            "prenom" => $prenom,
+            "login" => $_SESSION['login'],
+        ];
+
+
+    }
 }

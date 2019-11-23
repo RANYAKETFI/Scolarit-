@@ -47,9 +47,12 @@ Route::get('ens/{id_enseignant}',function ($id_enseignant) {
 /*
 Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
 */
-Route::view('/ens/s/{seance?}', 'app');
-Route::view('/ens/{path?}', 'app');
-Route::view('/ens/{path?}/{gr?}', 'app');
+Route::view('/prof/s/{seance?}', 'InterfaceProf');
+//Route::view('/ens/{path?}', 'InterfaceProf');
+//Route::view('/ens/{path?}/{gr?}', 'InterfaceProf');
+Route::view('/prof', 'InterfaceProf');
+Route::view('/prof/{path?}', 'InterfaceProf');
+
 
 
 

@@ -121,6 +121,8 @@
   .content-container {
     padding-left: 220px;
   }
+
+  
   #etudiants {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -192,7 +194,7 @@ $("#menu-toggle").click(function(e){
 });
 });
   </script>
-    <div>
+    <div id="app">
       
        <div class="sidebar-container">
      <div class="sidebar-logo">
@@ -262,7 +264,8 @@ $("#menu-toggle").click(function(e){
        <!-- Main component for a primary marketing message or call to action -->
        <div class="jumbotron">
          <main class="py-4">
-             @yield('content')
+         <div id="app"></div>
+
          </main>
        </div>
 

@@ -29,12 +29,13 @@ class ConnexionController extends Controller
         } 
         $_SESSION['login']=NULL;
         $_SESSION['type']=NULL;
+        $_SESSION['id']=NULL;
         
         request()->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        $enseignant = DB::table('enseignants')->where('login', request()->input('email'))->select('login', 'mdp')->get();
+        $enseignant = DB::table('enseignants')->where('login', request()->input('email'))->select('login', 'mdp','id')->get();
     
         if (!($enseignant->isEmpty()))
         {
@@ -42,6 +43,7 @@ class ConnexionController extends Controller
             if (request()->input('password')==$enseignant->first()->mdp)
             {
                 $_SESSION['login']=$enseignant->first()->login;
+                $_SESSION['id']=$enseignant->first()->id;
                 $_SESSION['type']=1; // 1 pour enseignant.
                 $erreur="ok";
 

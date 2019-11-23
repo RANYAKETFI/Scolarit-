@@ -17,10 +17,7 @@ export default class Seance extends Component {
         const  handle  = this.props.match.params.handle
         const  other  = this.props.match.params.other
 
-        axios.get(`/api/ens/${handle}/${other}`).then(response => {
-          console.log(handle)
-          console.log(other)
-          console.log(JSON.stringify(response))
+        axios.get(`/api/prof/${handle}`).then(response => {
 
             this.setState({
             seances: response.data.data
@@ -29,7 +26,8 @@ export default class Seance extends Component {
       }
       handleclick()
       {
-        window.history.back()
+        window.location = "/prof";
+
       }
 
     render() {
@@ -49,7 +47,7 @@ export default class Seance extends Component {
                       {seances.map(seance => (
                         <Link
                           className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                          to={`/ens/s/${seance.id}`}
+                          to={`/prof/s/${seance.id}`}
                           key={seance.id}
                         >
                           {seance.module} : {seance.date} 

@@ -6,6 +6,8 @@ import Example from './Example'
 import Index from './Index'
 import Seance from './Seance'
 import GroupeEns from './GroupeEns'
+import Compte from './Compte'
+
 
 
 class App extends Component {
@@ -14,9 +16,10 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path='/ens/s/:id_seance' component={GroupeEns} />
-            <Route path='/ens/:handle/:other' component={Seance} />
-            <Route path='/ens/:handle' component={Index} />
+          <Route path='/prof/s/:id_seance' component={GroupeEns} />
+          <Route path='/prof/:handle' component={Seance} />
+          <Route path='/prof' component={Index} />
+          <Route path='/compte' component={Compte} />
           </Switch>
         </div>
       </BrowserRouter>

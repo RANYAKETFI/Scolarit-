@@ -19,7 +19,7 @@ export default class GroupeEns extends Component {
         const  id_seance  = this.props.match.params.id_seance
 
 
-        axios.get(`/api/ens/s/${id_seance}`).then(response => {
+        axios.get(`/api/prof/s/${id_seance}`).then(response => {
 
             this.setState({
                 etudiants : response.data.data,
@@ -44,10 +44,10 @@ export default class GroupeEns extends Component {
         for(i=0;i<this.state.etudiants.length;i++)
         { 
               if(document.getElementById('etud'+this.state.etudiants[i].id).checked==true){
-                axios.put(`/api/ens/s/${this.state.seance}/${this.state.etudiants[i].id}/1`)
+                axios.put(`/api/prof/s/${this.state.seance}/${this.state.etudiants[i].id}/1`)
             }
             else{
-                axios.put(`/api/ens/s/${this.state.seance}/${this.state.etudiants[i].id}/0`)
+                axios.put(`/api/prof/s/${this.state.seance}/${this.state.etudiants[i].id}/0`)
             }
         }
         window.history.back();

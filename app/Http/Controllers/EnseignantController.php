@@ -8,6 +8,8 @@ use App\Http\Resources\GroupeResource;
 use App\Http\Resources\SeanceResource;
 
 use Javascript;
+use Auth;
+
 
 class EnseignantController extends Controller
 {
@@ -19,14 +21,28 @@ class EnseignantController extends Controller
         $this->id=$id;   
     }*/
 
-    public function getGroupes(Request $request)
+    public function getGroupes()
     {
-        $id_enseignant = $request->id_enseignant;
 
+        if(!isset($_SESSION)) 
+        { 
+           session_start(); 
+        }
+        if (empty($_SESSION['login']))
+        {
+            return redirect('connexion');
+             
+        } 
+
+        if ($_SESSION['type']!=1)
+        {
+             return redirect('connexion');
+             
+        }
         $groupes=  \DB::table('seances')
         ->join('groupes', 'seances.id_groupe', '=', 'groupes.id')
         ->select('groupes.id','groupes.groupe')
-        ->where('seances.id_enseignant',$id_enseignant)
+        ->where('seances.id_enseignant',$_SESSION['id'])
         ->groupBy('groupes.id')
         ->get();
 
@@ -35,8 +51,22 @@ class EnseignantController extends Controller
     }
 
     public function getSeancesGroupe(Request $request)
-    {   
-        $id_enseignant= $request->id_enseignant;
+    {     if(!isset($_SESSION)) 
+        { 
+           session_start(); 
+        }
+        if (empty($_SESSION['login']))
+        {
+            return redirect('connexion');
+             
+        } 
+
+        if ($_SESSION['type']!=1)
+        {
+             return redirect('connexion');
+             
+        }
+        $id_enseignant= $_SESSION['id'];
         $id_groupe=$request->id_groupe;
         $seances=  \DB::table('seances')
         ->where('seances.id_groupe',$id_groupe)

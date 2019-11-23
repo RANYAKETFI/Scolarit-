@@ -9,6 +9,22 @@ class SeanceController extends Controller
 {
     public function getEtudiants(Request $request)
     {
+
+        if(!isset($_SESSION)) 
+        { 
+           session_start(); 
+        }
+        if (empty($_SESSION['login']))
+        {
+            return redirect('connexion');
+             
+        } 
+
+        if ($_SESSION['type']!=1)
+        {
+             return redirect('connexion');
+             
+        }
         $id_seance = $request->id_seance;
 
         $etuds=  \DB::table('etudiants')
@@ -26,6 +42,22 @@ class SeanceController extends Controller
     }
     public function postSeanceEtudiant(Request $request)
     {
+
+        if(!isset($_SESSION)) 
+        { 
+           session_start(); 
+        }
+        if (empty($_SESSION['login']))
+        {
+            return redirect('connexion');
+             
+        } 
+
+        if ($_SESSION['type']!=1)
+        {
+             return redirect('connexion');
+             
+        }
         $id_seance = $request->id_seance;
         $id_etudiant = $request->id_etudiant;
         $abs = $request->abs;

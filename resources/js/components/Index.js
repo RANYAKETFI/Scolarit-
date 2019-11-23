@@ -15,10 +15,9 @@ export default class Index extends Component {
       
       componentDidMount () {
         const { handle } = this.props.match.params
-        axios.get(`/api/ens/${handle}`).then(response => {
+        axios.get(`/api/prof`).then(response => {
             this.setState({
             groupes: response.data.data,
-            ens:handle
           })
         })
       }
@@ -40,7 +39,7 @@ export default class Index extends Component {
                       {groupes.map(groupe => (
                         <Link
                           className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                          to={`/ens/${this.state.ens}/${groupe.id}`}
+                          to={`/prof/${groupe.id}`}
                           key={groupe.id}
                         >
                           {groupe.groupe}

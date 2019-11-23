@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ESI-Scolarité</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -133,85 +133,64 @@ $("#menu-toggle").click(function(e){
 });
   </script>
     <div id="app">
-      <!--  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-       -->
+      
        <div class="sidebar-container">
      <div class="sidebar-logo">
 
        ESI-Scolarité
      </div>
      <ul class="sidebar-navigation">
-       <li class="header">Navigation</li>
+     
+     <?php
+      if (($_SESSION['type'])==1) $table='enseignants' ; else $table='etudiants';
+      $nom= DB::table($table)->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
+      $prenom= DB::table($table)->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
+          ?>
+
+     <li class="header"><?php echo '<strong><center>'.$nom.' '.$prenom."</center></strong><center>".$_SESSION['login']; echo '</center>'; if ($_SESSION['type']==1) echo "<center><strong>(enseignant)</strong></center>" ; else
+     {
+      $id_groupe= DB::table('etudiants')->where('login', $_SESSION['login'])->select('id_groupe')->get()->first()->id_groupe;
+      
+        
+      if (!empty($id_groupe)) $groupe= DB::table('groupes')->where('id', $id_groupe)->select('groupe')->get()->first()->groupe;
+     echo "<center><strong>(étudiant - Groupe : ".$groupe.")</strong></center>";
+     }
+     ?></li>
+       <li class="header">Fonctionnalités</li>
+      
+       <?php if ($_SESSION['type']==2)
+       {
+           ?>
+
        <li>
-         <a href="#">
-           <i class="fa fa-home" aria-hidden="true"></i> Acceuil
-         </a>
-       </li>
-       <li>
-         <a href="#">
-           <i class="fa fa-tachometer" aria-hidden="true"></i> gérer mon comptes
-         </a>
-       </li>
-       <li class="header"></li>
-       <li>
-         <a href="#">
+         <a href="/etud">
            <i class="fa fa-users" aria-hidden="true"></i> Mes absences
          </a>
        </li>
+
+       <?php } 
+       else
+       {
+           ?>
+        <li>
+        <a href="/prof">
+          <i class="fa fa-users" aria-hidden="true"></i> Gérer les absences
+        </a>
+      </li>
+        <?php
+       }
+       ?>
        <li>
-         <a href="#">
-           <i class="fa fa-cog" aria-hidden="true"></i> other stuff
+         <a href="/compte">
+           <i class="fa fa-tachometer" aria-hidden="true"></i> Gérer mon compte
          </a>
        </li>
+       <li class="header"></li>
+       
+      
        <li>
-         <a href="#">
-           <i class="fa fa-info-circle" aria-hidden="true"></i> Information
+         <a href="/deconnexion">
+           <i class="fa fa-info-circle" aria-hidden="true"></i> Déconnexion
          </a>
        </li>
      </ul>

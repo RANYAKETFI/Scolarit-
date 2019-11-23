@@ -10,21 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+Route::get('/connexion', 'ConnexionController@formulaire');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::post('/connexion', 'ConnexionController@traitement');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/deconnexion', 'ConnexionController@deconnexion');
+
+
+Route::get('/', 'ConnexionController@redirection');
+
 Route::get('/prof',function(){
-    return view('InterfaceProf');
+   return view('InterfaceProf');
+  
 });
+
+
+/*
 Route::get('/etud',function(){
     return view('InterfaceEtud');
 });
@@ -47,3 +50,12 @@ Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
 Route::view('/ens/s/{seance?}', 'app');
 Route::view('/ens/{path?}', 'app');
 Route::view('/ens/{path?}/{gr?}', 'app');
+
+
+
+//Route::get('/etud/{id_etud}','EtudiantController@absences_etudiant');
+
+Route::get('/etud','EtudiantController@absences_etudiant');
+
+Route::get('/compte', 'CompteController@afficher');
+Route::post('/compte', 'CompteController@modifier');

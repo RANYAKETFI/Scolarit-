@@ -27,6 +27,18 @@ class SeanceController extends Controller
         }
         $id_seance = $request->id_seance;
 
+        $test=\DB::table('seances')
+        ->where('seances.id',$id_seance)
+        ->select('seances.id_enseignant')
+        ->get()
+        ->first();
+
+        if($test->id_enseignant!=$_SESSION['id'])
+        {
+            return redirect('prof'); 
+        }
+
+
         $etuds=  \DB::table('etudiants')
         ->join('seances', 'seances.id_groupe', '=', 'etudiants.id_groupe')
         ->leftJoin('absences',function ($join) {

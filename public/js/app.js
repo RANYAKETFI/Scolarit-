@@ -73646,9 +73646,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -73666,13 +73666,57 @@ function (_Component) {
   _inherits(Login, _Component);
 
   function Login() {
+    var _this;
+
     _classCallCheck(this, Login);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Login).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Login).call(this));
+    _this.state = {
+      login: '',
+      mdp: ''
+    };
+    _this.handleChange1 = _this.handleChange1.bind(_assertThisInitialized(_this));
+    _this.handleChange2 = _this.handleChange2.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
   } //this.updateCompte = this.updateCompte.bind(this)
 
 
   _createClass(Login, [{
+    key: "handleChange1",
+    value: function handleChange1(event) {
+      this.setState({
+        login: event.target.value
+      });
+    }
+  }, {
+    key: "handleChange2",
+    value: function handleChange2(event) {
+      this.setState({
+        mdp: event.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      var login = this.state.login;
+      var mdp = this.state.mdp;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/connexion", {
+        login: login,
+        mdp: mdp
+      }).then(function (res) {
+        if (res.data == "ok") {
+          window.location.href = "/connexion";
+        } else {
+          document.getElementById('erreur').innerHTML = res.data;
+        } //   console.log(res);
+
+
+        console.log(res.data);
+      }); //
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {}
   }, {
@@ -73695,7 +73739,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         method: "POST",
         className: "login100-form validate-form",
-        action: "/connexion"
+        onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "login100-form-title"
       }, "Scolarit\xE9 - Gestion des absences"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73705,7 +73749,9 @@ function (_Component) {
         className: "input100",
         type: "text",
         name: "email",
-        placeholder: "Adresse e-mail"
+        placeholder: "Adresse e-mail",
+        value: this.state.login,
+        onChange: this.handleChange1
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "focus-input100"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -73720,7 +73766,9 @@ function (_Component) {
         className: "input100",
         type: "password",
         name: "password",
-        placeholder: "Mot de passe"
+        placeholder: "Mot de passe",
+        value: this.state.mdp,
+        onChange: this.handleChange2
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "focus-input100"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -73732,7 +73780,12 @@ function (_Component) {
         className: "container-login100-form-btn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "login100-form-btn"
-      }, "Connexion")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)))));
+      }, "Connexion")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        id: "erreur",
+        style: {
+          color: '#D8000C'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)))));
     }
   }]);
 

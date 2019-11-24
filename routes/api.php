@@ -25,6 +25,7 @@ Route::get('/prof/{id_groupe}','EnseignantController@getSeancesGroupe');
 
 Route::get('/compte','CompteController@getInfo');
 Route::get('/etud','EtudiantController@absences_etudiant');
+Route::post('/connexion','ConnexionController@connecter');
 
 
 

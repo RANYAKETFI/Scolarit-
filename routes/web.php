@@ -12,18 +12,15 @@
 */
 
 Route::get('/connexion', 'ConnexionController@formulaire');
-Route::post('/connexion', 'ConnexionController@traitement');
+// Route::post('/connexion', 'ConnexionController@traitement'); (à effacer car désormais c'est React qui s'occupe du POST du formulaire, grâce à l'attribut onSubmit qui appelle une route dans l'API)
 Route::get('/deconnexion', 'ConnexionController@deconnexion');
 Route::get('/', 'ConnexionController@redirection');
-
 
 Route::view('/prof/s/{seance?}', 'InterfaceProf');
 Route::view('/prof', 'InterfaceProf');
 Route::view('/prof/{path?}', 'InterfaceProf');
 
-
 Route::view('/etud','InterfaceEtud');
-
 
 Route::get('/compte', 'CompteController@afficher');
 Route::post('/compte', 'CompteController@modifier');

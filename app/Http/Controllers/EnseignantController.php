@@ -21,28 +21,14 @@ class EnseignantController extends Controller
         $this->id=$id;   
     }*/
 
-    public function getGroupes()
+    public function getGroupes(Request $request)
     {
 
-        if(!isset($_SESSION)) 
-        { 
-           session_start(); 
-        }
-        if (empty($_SESSION['login']))
-        {
-            return redirect('connexion');
-             
-        } 
-
-        if ($_SESSION['type']!=1)
-        {
-             return redirect('connexion');
-             
-        }
+        
         $groupes=  \DB::table('seances')
         ->join('groupes', 'seances.id_groupe', '=', 'groupes.id')
         ->select('groupes.id','groupes.groupe')
-        ->where('seances.id_enseignant',$_SESSION['id'])
+        ->where('seances.id_enseignant',$request->id)
         ->groupBy('groupes.id')
         ->get();
 
@@ -51,22 +37,9 @@ class EnseignantController extends Controller
     }
 
     public function getSeancesGroupe(Request $request)
-    {     if(!isset($_SESSION)) 
-        { 
-           session_start(); 
-        }
-        if (empty($_SESSION['login']))
-        {
-            return redirect('connexion');
-             
-        } 
+    {     
 
-        if ($_SESSION['type']!=1)
-        {
-             return redirect('connexion');
-             
-        }
-        $id_enseignant= $_SESSION['id'];
+        $id_enseignant= $request->id;
         $id_groupe=$request->id_groupe;
         $seances=  \DB::table('seances')
         ->where('seances.id_groupe',$id_groupe)

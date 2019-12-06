@@ -260,18 +260,12 @@ $("#menu-toggle").click(function(e){
      </ul>
    </div>
 
-   <div class="content-container">
 
-     <div class="container-fluid">
-       <!-- Main component for a primary marketing message or call to action -->
-       <div class="jumbotron">
-         <main class="py-4">
+     
+     
+   <main class="py-4">
              @yield('content')
          </main>
-       </div>
-
-     </div>
-   </div>
 
 
     </div>

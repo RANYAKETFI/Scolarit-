@@ -43,7 +43,7 @@ class ConnexionController extends Controller
                 $_SESSION['login']=$enseignant->first()->login;
                 $_SESSION['id']=$enseignant->first()->id;
                 $_SESSION['type']=1; // 1 pour enseignant.
-                $erreur="ok";
+                $erreur="1";
 
             }
             else
@@ -65,7 +65,9 @@ class ConnexionController extends Controller
                     {
                         $_SESSION['login']=$etudiant->first()->login;
                         $_SESSION['type']=2; // 2 pour étudiant.
-                        $erreur="ok";
+                        $_SESSION['id']=$etudiant->first()->id;
+
+                        $erreur="2";
 
                     }
                     else
@@ -80,14 +82,14 @@ class ConnexionController extends Controller
                 }
             }
 
-        //return $erreur;
 
         }
 
 
 
+        return $erreur;
 
-        return view('login')->with('erreur', $erreur);
+        //return view('login')->with('erreur', $erreur);
     }
 
 
@@ -123,15 +125,12 @@ public function connecter(Request $request)
 
 
 
-
+        $groupe=null;
         $erreur="aucune";
-        if(!isset($_SESSION))
-        {
-            session_start();
-        }
-        $_SESSION['login']=NULL;
-        $_SESSION['type']=NULL;
-        $_SESSION['id']=NULL;
+        $login=null;
+        $id=null;
+        $type=null;
+
 
         if (empty($request->login))
         {
@@ -147,17 +146,19 @@ public function connecter(Request $request)
             'password' => ['required'],
         ]);
         */
-        $enseignant = DB::table('enseignants')->where('login', $request->login)->select('login', 'mdp','id')->get();
+        $enseignant = DB::table('enseignants')->where('login', $request->login)->select('login', 'mdp','id',"nom","prenom")->get();
 
         if (!($enseignant->isEmpty()))
         {
 
             if ($request->mdp==$enseignant->first()->mdp)
             {
-                $_SESSION['login']=$enseignant->first()->login;
-                $_SESSION['id']=$enseignant->first()->id;
-                $_SESSION['type']=1; // 1 pour enseignant.
-                $erreur="ok";
+                $login=$enseignant->first()->login;
+                $id=$enseignant->first()->id;
+                $type=1; // 1 pour enseignant.
+                $erreur="1";
+                $nom=$enseignant->first()->nom;
+                $prenom=$enseignant->first()->prenom;
 
             }
             else
@@ -168,18 +169,23 @@ public function connecter(Request $request)
         }
         else
         {
-            if ($erreur!="ok")
+            if ($erreur!="1")
             {
-                $etudiant = DB::table('etudiants')->where('login', $request->login)->select('login', 'mdp')->get();
-
+                $etudiant = DB::table('etudiants')->where('login', $request->login)->select('login', 'mdp','id', 'nom','prenom','id_groupe')->get();
                 if (!($etudiant->isEmpty()))
                 {
 
                     if ($request->mdp==$etudiant->first()->mdp)
                     {
-                        $_SESSION['login']=$etudiant->first()->login;
-                        $_SESSION['type']=2; // 2 pour étudiant.
-                        $erreur="ok";
+                        $login=$etudiant->first()->login;
+                        $id=$etudiant->first()->id;
+                        $type=2; // 2 pour étudiant.
+                        $nom=$etudiant->first()->nom;
+                        $prenom=$etudiant->first()->prenom;
+                        $id_groupe=$etudiant->first()->id_groupe;
+                        $erreur="2";
+                        $groupe= DB::table('groupes')->where('id', $id_groupe)->select('groupe')->get()->first();
+
 
                     }
                     else
@@ -200,7 +206,18 @@ public function connecter(Request $request)
 
 
 
-        return $erreur;
+        return [
+            "erreur"=>$erreur,
+            "login"=>$login,
+            "id"=>$id,
+            "type"=>$type,
+            "nom"=>$nom,
+            "prenom"=>$prenom,
+            "groupe"=>$groupe,
+
+
+
+        ];
 
 
 

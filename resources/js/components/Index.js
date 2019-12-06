@@ -57,8 +57,3 @@ export default class Index extends Component {
 
     
    
-//function btnClick(){ alert('yeah');}
-/*
-if (document.getElementById('example')) {
-    ReactDOM.render(<Index />, document.getElementById('example'));
-}*/

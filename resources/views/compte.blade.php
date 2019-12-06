@@ -150,19 +150,6 @@
 </style>
 
 
-<?php
-if ($_SESSION['type']==2)
-{
-    $nom= DB::table('etudiants')->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
-    $prenom= DB::table('etudiants')->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
-}
-else
-{
-    $nom= DB::table('enseignants')->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
-    $prenom= DB::table('enseignants')->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
-}
-?>
-
 <div id="app"></div>
 
 @endsection

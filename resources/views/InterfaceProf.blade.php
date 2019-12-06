@@ -29,10 +29,15 @@
    exit;
  }
  ?>
-
-
+<div class="content-container">
+  <div class="container-fluid">
+    <div class="jumbotron">
+ 
 <div id="app">
 
+      </div>
+      </div>
+      </div>
       </div>
 
 @endsection

@@ -35,9 +35,13 @@ export default class Login extends Component {
 
         axios.post(`/api/connexion`, { login, mdp })
             .then(res => {
-                if (res.data=="ok")
+                if (res.data=="1")
                 {
-                    window.location.href = "/connexion"
+                    window.location.href = "/prof"
+                }
+                else if (res.data=="2")
+                {
+                    window.location.href = "/etud"
                 }
                 else
                 {

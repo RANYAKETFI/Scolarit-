@@ -64,7 +64,7 @@ export default class Login extends Component {
                 }
                 else
                 {
-                    document.getElementById('erreur').innerHTML = JSON.stringify(res.data.erreur).replace('"',"").replace('"',"")
+                    document.getElementById('erreur').innerHTML = result
 
                 }
              //   console.log(res);

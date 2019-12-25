@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/connexion', 'ConnexionController@formulaire');
+Route::post('/connexion', 'ConnexionController@traitement');
+Route::get('/deconnexion', 'ConnexionController@deconnexion');
+Route::get('/', 'ConnexionController@redirection');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/prof/s/{seance?}', 'InterfaceProf');
+Route::view('/prof', 'InterfaceProf');
+Route::view('/prof/{path?}', 'InterfaceProf');
+
+
+Route::view('/etud','InterfaceEtud');
+
+
+Route::get('/compte', 'CompteController@afficher');
+Route::post('/compte', 'CompteController@modifier');

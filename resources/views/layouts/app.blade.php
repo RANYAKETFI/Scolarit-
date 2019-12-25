@@ -7,7 +7,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ESI-Scolarité</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    <!-- Styles  -->
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -15,76 +28,246 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    </script>
+    <script>
+    $(document).ready( function () {
+        $('table').DataTable();
+    } );
+    </script>
+    <style media="screen">
+    .sidebar-container {
+    position: fixed;
+    width: 220px;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #1a1a1a;
+    color: #fff;
+  }
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  .content-container {
+    padding-top: 20px;
+  }
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  .sidebar-logo {
+    padding: 10px 15px 10px 30px;
+    font-size: 20px;
+    background-color: #2574A9;
+  }
+
+  .sidebar-navigation {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+  }
+
+  .sidebar-navigation li {
+    background-color: transparent;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    line-height: 20px;
+  }
+
+  .sidebar-navigation li a {
+    padding: 10px 15px 10px 30px;
+    display: block;
+    color: #fff;
+  }
+
+  .sidebar-navigation li .fa {
+    margin-right: 10px;
+  }
+
+  .sidebar-navigation li a:active,
+  .sidebar-navigation li a:hover,
+  .sidebar-navigation li a:focus {
+    text-decoration: none;
+    outline: none;
+  }
+
+  .sidebar-navigation li::before {
+    background-color: #2574A9;
+    position: absolute;
+    content: '';
+    height: 100%;
+    left: 0;
+    top: 0;
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 3px;
+    z-index: -1;
+  }
+
+  .sidebar-navigation li:hover::before {
+    width: 100%;
+  }
+
+  .sidebar-navigation .header {
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #151515;
+    padding: 10px 15px 10px 30px;
+  }
+
+  .sidebar-navigation .header::before {
+    background-color: transparent;
+  }
+
+  .content-container {
+    padding-left: 220px;
+  }
+  #etudiants {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#etudiants td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#etudiants tr:nth-child(even){background-color: #f2f2f2;}
+
+#etudiants tr:hover {background-color: #ddd;}
+
+#etudiants th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #2574A9;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#table{
+  background-color:#FBEFF2;
+}
+    </style>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <script type="text/javascript">
+  $(document).ready(function(){
+$("#menu-toggle").click(function(e){
+  e.preventDefault();
+  $("#wrapper").toggleClass("menuDisplayed");
+});
+});
+  </script>
+    <div>
+      
+       <div class="sidebar-container">
+     <div class="sidebar-logo">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+       ESI-Scolarité
+     </div>
+     <ul class="sidebar-navigation">
+     
+     <?php
+      if (($_SESSION['type'])==1) $table='enseignants' ; else $table='etudiants';
+      $nom= DB::table($table)->where('login', $_SESSION['login'])->select('nom')->get()->first()->nom;
+      $prenom= DB::table($table)->where('login', $_SESSION['login'])->select('prenom')->get()->first()->prenom;
+          ?>
 
-                    </ul>
+     <li class="header"><?php echo '<strong><center>'.$nom.' '.$prenom."</center></strong><center>".$_SESSION['login']; echo '</center>'; if ($_SESSION['type']==1) echo "<center><strong>(enseignant)</strong></center>" ; else
+     {
+      $id_groupe= DB::table('etudiants')->where('login', $_SESSION['login'])->select('id_groupe')->get()->first()->id_groupe;
+      
+        
+      if (!empty($id_groupe)) $groupe= DB::table('groupes')->where('id', $id_groupe)->select('groupe')->get()->first()->groupe;
+     echo "<center><strong>(étudiant - Groupe : ".$groupe.")</strong></center>";
+     }
+     ?></li>
+       <li class="header">Fonctionnalités</li>
+      
+       <?php if ($_SESSION['type']==2)
+       {
+           ?>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+       <li>
+         <a href="/etud">
+           <i class="fa fa-users" aria-hidden="true"></i> Mes absences
+         </a>
+       </li>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+       <?php } 
+       else
+       {
+           ?>
+        <li>
+        <a href="/prof">
+          <i class="fa fa-users" aria-hidden="true"></i> Gérer les absences
+        </a>
+      </li>
+        <?php
+       }
+       ?>
+       <li>
+         <a href="/compte">
+           <i class="fa fa-tachometer" aria-hidden="true"></i> Gérer mon compte
+         </a>
+       </li>
+       <li class="header"></li>
+       
+      
+       <li>
+         <a href="/deconnexion">
+           <i class="fa fa-info-circle" aria-hidden="true"></i> Déconnexion
+         </a>
+       </li>
+     </ul>
+   </div>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+     
+     
+   <main class="py-4">
+             @yield('content')
+         </main>
+
+
     </div>
 </body>
 </html>

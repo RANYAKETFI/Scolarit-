@@ -97,7 +97,7 @@ export default class Login extends Component {
 					</div>
 
 					<div className="container-login100-form-btn">
-						<button className="login100-form-btn">
+						<button dusk="login-button" className="login100-form-btn">
 							Connexion
 						</button>
 					</div>

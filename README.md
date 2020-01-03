@@ -47,6 +47,11 @@ npm install
 | ------ | -- | --  | -- | -- | 
 ###### N.B : Ces caractéristiques sont modifiables via le fichier .env situé dans la racine du projet.
 
+- Puis lancer la migration de la base de données avec la commande
+```bash
+php artisan migrate
+```
+
 5) En se positionnant dans la racine du projet, lancer dans l'ordre la suite de commandes :
 
 **Lancement de le l'environnement de développement Back-end (Laravel):**

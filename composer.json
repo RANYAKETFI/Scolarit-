@@ -63,5 +63,7 @@
             "@php artisan key:generate --ansi"
         ],
          "test": "C:/wamp64/www/Scolarit-/vendor/bin/phpunit"
-    }
+    },
+
+
 }

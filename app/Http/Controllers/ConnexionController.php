@@ -130,15 +130,34 @@ public function connecter(Request $request)
         $login=null;
         $id=null;
         $type=null;
-
+        $nom=null;
+        $prenom=null;
 
         if (empty($request->login))
         {
-            return "Adresse e-mail requise.";
+           $erreur= "Adresse e-mail requise.";
+            return [
+                "erreur"=>$erreur,
+                "login"=>$login,
+                "id"=>$id,
+                "type"=>$type,
+                "nom"=>$nom,
+                "prenom"=>$prenom,
+                "groupe"=>$groupe,
+            ];
         }
         if (empty($request->mdp))
         {
-            return "Mot de passe requis.";
+            $erreur= "Mot de passe requis.";
+            return [
+                "erreur"=>$erreur,
+                "login"=>$login,
+                "id"=>$id,
+                "type"=>$type,
+                "nom"=>$nom,
+                "prenom"=>$prenom,
+                "groupe"=>$groupe,
+            ];
         }
         /*
         request()->validate([
@@ -164,6 +183,15 @@ public function connecter(Request $request)
             else
             {
                 $erreur="Mot de passe de l'enseignant incorrect.";
+                return [
+                    "erreur"=>$erreur,
+                    "login"=>$login,
+                    "id"=>$id,
+                    "type"=>$type,
+                    "nom"=>$nom,
+                    "prenom"=>$prenom,
+                    "groupe"=>$groupe,
+                ];
             }
 
         }
@@ -191,12 +219,30 @@ public function connecter(Request $request)
                     else
                     {
                         $erreur="Mot de passe de l'étudiant incorrect.";
+                        return [
+                            "erreur"=>$erreur,
+                            "login"=>$login,
+                            "id"=>$id,
+                            "type"=>$type,
+                            "nom"=>$nom,
+                            "prenom"=>$prenom,
+                            "groupe"=>$groupe,
+                        ];
                     }
 
                 }
                 else
                 {
                     $erreur="Pas d'enseignant ni d'étudiant ne possèdent cette adresse e-mail";
+                    return [
+                        "erreur"=>$erreur,
+                        "login"=>$login,
+                        "id"=>$id,
+                        "type"=>$type,
+                        "nom"=>$nom,
+                        "prenom"=>$prenom,
+                        "groupe"=>$groupe,
+                    ];
                 }
             }
 
@@ -214,16 +260,12 @@ public function connecter(Request $request)
             "nom"=>$nom,
             "prenom"=>$prenom,
             "groupe"=>$groupe,
-
-
-
         ];
 
 
 
 
     }
-
 
 
 

@@ -118,7 +118,7 @@ class ConnexionController extends Controller
     }
 
 */
-    public function connecter(Request $request)
+public function connecter(Request $request)
     {
 
 
@@ -130,34 +130,15 @@ class ConnexionController extends Controller
         $login=null;
         $id=null;
         $type=null;
-        $nom=null;
-        $prenom=null;
+
 
         if (empty($request->login))
         {
-            $erreur= "Adresse e-mail requise.";
-            return [
-                "erreur"=>$erreur,
-                "login"=>$login,
-                "id"=>$id,
-                "type"=>$type,
-                "nom"=>$nom,
-                "prenom"=>$prenom,
-                "groupe"=>$groupe,
-            ];
+            return "Adresse e-mail requise.";
         }
         if (empty($request->mdp))
         {
-            $erreur= "Mot de passe requis.";
-            return [
-                "erreur"=>$erreur,
-                "login"=>$login,
-                "id"=>$id,
-                "type"=>$type,
-                "nom"=>$nom,
-                "prenom"=>$prenom,
-                "groupe"=>$groupe,
-            ];
+            return "Mot de passe requis.";
         }
         /*
         request()->validate([
@@ -183,15 +164,6 @@ class ConnexionController extends Controller
             else
             {
                 $erreur="Mot de passe de l'enseignant incorrect.";
-                return [
-                    "erreur"=>$erreur,
-                    "login"=>$login,
-                    "id"=>$id,
-                    "type"=>$type,
-                    "nom"=>$nom,
-                    "prenom"=>$prenom,
-                    "groupe"=>$groupe,
-                ];
             }
 
         }
@@ -219,30 +191,12 @@ class ConnexionController extends Controller
                     else
                     {
                         $erreur="Mot de passe de l'étudiant incorrect.";
-                        return [
-                            "erreur"=>$erreur,
-                            "login"=>$login,
-                            "id"=>$id,
-                            "type"=>$type,
-                            "nom"=>$nom,
-                            "prenom"=>$prenom,
-                            "groupe"=>$groupe,
-                        ];
                     }
 
                 }
                 else
                 {
                     $erreur="Pas d'enseignant ni d'étudiant ne possèdent cette adresse e-mail";
-                    return [
-                        "erreur"=>$erreur,
-                        "login"=>$login,
-                        "id"=>$id,
-                        "type"=>$type,
-                        "nom"=>$nom,
-                        "prenom"=>$prenom,
-                        "groupe"=>$groupe,
-                    ];
                 }
             }
 
@@ -260,12 +214,17 @@ class ConnexionController extends Controller
             "nom"=>$nom,
             "prenom"=>$prenom,
             "groupe"=>$groupe,
+
+
+
         ];
 
 
 
 
     }
+
+
 
 
 

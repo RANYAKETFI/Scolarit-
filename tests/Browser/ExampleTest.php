@@ -16,10 +16,11 @@ class ExampleTest extends DuskTestCase
     public function testBasicExample()
     {
     /*  $this->browse(function (Browser $browser) {
-          $browser->visit('/')
-          ->type('email','hr_ketfi@esi.dz')
-          ->type('password','ketfi')
-          ->click('@Connexion-button')
-          ->assertPathIs('/etud');
-    });*/
+            $browser->visit('http://localhost:3000/')
+            ->type('email','hr_ketfi@esi.dz')
+            ->type('password','ketfi')
+            ->click('@Connexion-button')
+            ->pause(3000)
+            ->assertPathIs('/etud');
+      });*/
 }}

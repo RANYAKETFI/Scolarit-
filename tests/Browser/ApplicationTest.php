@@ -17,24 +17,23 @@ class ApplicationTest extends DuskTestCase
     {
 
     $this->browse(function (Browser $browser) {
-          $browser->visit('http://localhost:3000/')
+          $browser->visit('/connexion')
           ->type('email','hr_ketfi@esi.dz')
           ->type('password','ketfi')
           ->click('@Connexion-button')
-          ->pause(3000)
-          ->assertPathIs('/etud');
+          ->assertSee('absences')
+          ->visit('/deconnexion')
+          ->assertSee('Gestion');
     });
     }
     public function testConnexionProf()
-    {/*
-      $this->browse(function (Browser $browser) {
+    {
+  /*   $this->browse(function (Browser $browser) {
           $browser->visit('http://localhost:3000/')
           ->type('email','m_koudil@esi.dz')
           ->type('password','koudil')
           ->click('@Connexion-button')
-          ->pause(3000)
-          ->assertPathIs('/prof')
-          ->assertSee('Mes groupes');
+          ->assertPathIs('/prof');
 
 
     });*/
@@ -45,26 +44,21 @@ class ApplicationTest extends DuskTestCase
         $browser->visit('http://localhost:3000/')
         ->type('email','m_koudil@esi.dz')
         ->pause('1000')
-
         ->type('password','koudil')
         ->pause('1000')
-
         ->press('@Connexion-button')
-        ->pause('1000')
-
         ->waitForText('1 CS 06')
-        ->pause('1000')
-
-        ->clicklink('1 CS 06')
+        ->assertSee('1 CS 06')
+       ->clicklink('1 CS 06')
         ->waitForText('THP : 2019-12-18 00:00:00')
         ->pause('1000')
-
         ->clicklink('THP : 2019-12-18 00:00:00')
         ->pause('1000')
         ->check('1')
         ->pause('1000')
         ->press('@Confirmer-button')
-        ->assertSee('Mes seances');
+        ->waitForText('Séances')
+        ->assertSee('Séances');
 
 
 

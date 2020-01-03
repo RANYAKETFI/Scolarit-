@@ -8,6 +8,5 @@ class Groupe extends Model
 {
     //
     protected $table = 'groupes';
-    public $timestamps = false;
 
 }

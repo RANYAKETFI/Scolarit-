@@ -52,7 +52,7 @@ export default class Login extends Component {
                     window.location.href = "/prof"
                 }
                 else if (JSON.stringify(res.data.erreur)=='"2"')
-                {
+                {    
                     localStorage.setItem("id", JSON.stringify(res.data.id).replace('"',"").replace('"',""))
                     localStorage.setItem("type", JSON.stringify(res.data.type).replace('"',"").replace('"',""))
                     localStorage.setItem("login", JSON.stringify(res.data.login).replace('"',"").replace('"',""))
@@ -75,7 +75,7 @@ export default class Login extends Component {
     }
 
 
-
+    
 
 
     componentDidMount () {
@@ -119,7 +119,7 @@ export default class Login extends Component {
 					</div>
 
 					<div className="container-login100-form-btn">
-						<button dusk="Connexion-button" className="login100-form-btn">
+						<button className="login100-form-btn">
 							Connexion
 						</button>
 					</div>
@@ -139,3 +139,4 @@ export default class Login extends Component {
 
         )}
     }
+

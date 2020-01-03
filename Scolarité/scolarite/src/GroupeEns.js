@@ -16,7 +16,7 @@ export default class GroupeEns extends Component {
 
       }
 
-
+      
       componentDidMount () {
         const  id_seance  = this.props.match.params.id_seance
 
@@ -32,7 +32,7 @@ export default class GroupeEns extends Component {
 
           var i
         for(i=0;i<this.state.etudiants.length;i++)
-        {
+        {   
             if(this.state.etudiants[i].absence>0){
                 document.getElementById('etud'+this.state.etudiants[i].id).checked=true;
             }
@@ -44,7 +44,7 @@ export default class GroupeEns extends Component {
       updateAbs(){
           var i
         for(i=0;i<this.state.etudiants.length;i++)
-        {
+        { 
               if(document.getElementById('etud'+this.state.etudiants[i].id).checked==true){
                 axios.put(`http://localhost:8000/api/prof/s/${this.state.seance}/${this.state.etudiants[i].id}/1`)
             }
@@ -81,8 +81,8 @@ export default class GroupeEns extends Component {
                         <tbody>
                       {etudiants.map(etudiant => (
                         <tr key={etudiant.id}>
-                            <td>{etudiant.nom}</td>
-                            <td>{etudiant.prenom}</td>
+                            <td>{etudiant.nom}</td> 
+                            <td>{etudiant.prenom}</td> 
                             <td><input type="checkbox" id={"etud"+etudiant.id} name={etudiant.id}></input></td>
                         </tr>
                       ))}
@@ -94,11 +94,14 @@ export default class GroupeEns extends Component {
             </div>
             <br></br>
             <button onClick={this.handleclick} className="button" style={{float:"right"}}>Annuler</button>
-            <button dusk="Confirmer-button" onClick={this.updateAbs} className="button" id="confirmer" style={{float:"right"}}>Confirmer</button>
-          </div>
+            <button onClick={this.updateAbs} className="button" id="confirmer" style={{float:"right"}}>Confirmer</button>
+          </div>   
           </div>
          </div>
-        </div>
+        </div>    
         </div> );
       }
     }
+
+
+
